@@ -12,10 +12,10 @@
 }
 
 body {
-  background-color: var(--primary);
+  background-color: lightblue;
   margin: 0;
   padding: 0;
-  font-family: "IBM Plex Sans", sans-serif;
+  font-family: sans-serif;
   color: var(--dark);
   line-height: 1.5;
   font-size: 16px;
@@ -27,7 +27,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: 700;
+  font-weight: 50;
   margin: 0;
   color: var(--dark);
   line-height: 1.25;
@@ -67,7 +67,7 @@ input {
 }
 
 .card-header h2 {
-  color: var(--primary);
+  color: black;
 }
 
 .btn {
