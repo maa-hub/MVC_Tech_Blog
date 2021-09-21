@@ -56,4 +56,4 @@ https://ancient-stream-39202.herokuapp.com/
 ## Contribution
 Made with ❤️ by Maame
 
-![alt text](./public/assets/images/Screenshot1.png)
+![alt text](./public/images/Screenshot1.png)
