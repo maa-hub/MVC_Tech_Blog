@@ -48,14 +48,12 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 * NODE.JS
 * EXPRESS.JS
 * MYSQL2 SEQUELIZE
+* EXPRESS HANDLEBARS
 
 ## Website
-https://take-noter.herokuapp.com/ 
+https://ancient-stream-39202.herokuapp.com/
 
 ## Contribution
 Made with ❤️ by Maame
 
 ![alt text](./public/assets/images/Screenshot1.png)
-![alt text](./public/assets/images/Screenshot2.png)
-![alt text](./public/assets/images/Screenshot3.png)
-![alt text](./public/assets/images/Screenshot4.png)
