@@ -54,6 +54,7 @@ THEN I am able to view comments but I am prompted to log in again before I can a
 https://ancient-stream-39202.herokuapp.com/
 
 ## Contribution
-Made with ❤️ by Maame
+Made with ❤️ by Maame (with assistance from class repository)
+
 
 ![alt text](./public/images/Screenshot1.png)
