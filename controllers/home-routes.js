@@ -1,10 +1,25 @@
-const router = require("express").Router();
-const { Post, Comment, User } = require("../models/");
 
-// get all posts for homepage
+const sequelize = require('../config/connection');
+const { User, Post, Comment} = require("../models/");
+const router = require("express").Router();
+
+
+
 router.get("/", (req, res) => {
   Post.findAll({
-    include: [User],
+    include: [{
+      model: Comment,
+      attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+      include: {
+          model: User,
+          attributes: ['username']
+      }
+  },
+  {
+      model: User,
+      attributes: ['username']
+  }
+],
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
@@ -12,21 +27,39 @@ router.get("/", (req, res) => {
       res.render("all-posts", { posts });
     })
     .catch((err) => {
+      console.log(err);
       res.status(500).json(err);
     });
 });
 
-// get single post
+router.get("/login", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
+
+  res.render("login");
+});
+
 router.get("/post/:id", (req, res) => {
-  Post.findByPk(req.params.id, {
-    include: [
-      User,
-      {
-        model: Comment,
-        include: [User],
-      },
-    ],
-  })
+  Post.findOne({
+    where: {
+      id: req.params.id
+  },
+  include: [{
+    model: Comment,
+    attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
+    include: {
+        model: User,
+        attributes: ['username']
+    }
+},
+{
+    model: User,
+    attributes: ['username']
+}
+]
+})
     .then((dbPostData) => {
       if (dbPostData) {
         const post = dbPostData.get({ plain: true });
@@ -41,22 +74,10 @@ router.get("/post/:id", (req, res) => {
     });
 });
 
-router.get("/login", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
-  }
-
-  res.render("login");
-});
 
 router.get("/signup", (req, res) => {
-  if (req.session.loggedIn) {
-    res.redirect("/");
-    return;
-  }
+  res.render('signup');
+  });
 
-  res.render("signup");
-});
 
 module.exports = router;
