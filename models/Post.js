@@ -12,7 +12,8 @@ Post.init(
     body: DataTypes.STRING
   },
   {
-    sequelize
+    sequelize,
+    modelName: 'post'
   }
 );
 
