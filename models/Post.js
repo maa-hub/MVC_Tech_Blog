@@ -9,7 +9,10 @@ Post.init(
       type: DataTypes.STRING,
       allowNull: false
     },
-    body: DataTypes.STRING
+    body: {
+      type: DataTypes.TEXT,
+      allowNull: false
+    }
   },
   {
     sequelize,

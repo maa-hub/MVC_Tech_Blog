@@ -7,19 +7,9 @@ const router = require("express").Router();
 
 router.get("/", (req, res) => {
   Post.findAll({
-    include: [{
-      model: Comment,
-      attributes: ['id', 'comment_text', 'post_id', 'user_id', 'created_at'],
-      include: {
-          model: User,
-          attributes: ['username']
-      }
-  },
-  {
-      model: User,
-      attributes: ['username']
-  }
-],
+
+    include: [User]
+    ,
   })
     .then((dbPostData) => {
       const posts = dbPostData.map((post) => post.get({ plain: true }));
@@ -76,6 +66,10 @@ router.get("/post/:id", (req, res) => {
 
 
 router.get("/signup", (req, res) => {
+  if (req.session.loggedIn) {
+    res.redirect("/");
+    return;
+  }
   res.render('signup');
   });
 
